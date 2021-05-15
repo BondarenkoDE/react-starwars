@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Search, SortPopup, Heroes } from '../components';
 
 function Home() {
   useEffect(() => {
@@ -36,9 +37,15 @@ function Home() {
   };
 
   return (
-    <Link to="/favorites">
-      <div className="tdn">111</div>
-    </Link>
+    <>
+      <div className="filter">
+        <Search />
+        <SortPopup />
+      </div>
+      <Heroes />
+
+      <div className="pagination"></div>
+    </>
   );
 }
 

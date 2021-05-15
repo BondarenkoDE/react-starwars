@@ -1,12 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Heroes } from '../components';
 
 function Favorites() {
-  return (
-    <Link to="/">
-      <div>Привет Как дела чем занимаешься 1234567890</div>
-    </Link>
-  );
+  return <Heroes />;
 }
 
 export default Favorites;

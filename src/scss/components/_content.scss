@@ -8,5 +8,19 @@
     width: 185px;
     height: 248px;
     margin-bottom: 35px;
+    color: black;
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    &__name {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    &__homeworld {
+      font-size: 16px;
+    }
   }
 }
