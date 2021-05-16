@@ -12,6 +12,7 @@ function Home() {
   useEffect(() => {
     dispatch(fetchHeroes(page));
   }, [page]);
+
   return (
     <>
       <div className="filter">
@@ -19,8 +20,8 @@ function Home() {
         <SortPopup />
       </div>
       <div className="content">
-        {items.map((obj, index) => (
-          <Heroes key={`${obj.name}_${index}`} {...obj} />
+        {items.map((obj) => (
+          <Heroes key={`${obj.name}`} {...obj} />
         ))}
       </div>
 
