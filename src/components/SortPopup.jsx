@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SortPopup() {
+const SortPopup = React.memo(function SortPopup() {
   return (
     <div className="sort">
       <svg
@@ -26,6 +26,6 @@ function SortPopup() {
       </div>
     </div>
   );
-}
+});
 
 export default SortPopup;

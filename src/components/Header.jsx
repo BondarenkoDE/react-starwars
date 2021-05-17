@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom';
 function Header() {
   return (
     <div className="header">
-      <img
-        src="https://cdn-0.imagensemoldes.com.br/wp-content/uploads/2020/06/Logo-Amarelo-Star-Wars-PNG.png"
-        alt="logo-star-wars"
-        className="header__logo"
-      />
+      <Link to="/">
+        <div className="header__logo">
+          <img
+            src="https://cdn-0.imagensemoldes.com.br/wp-content/uploads/2020/06/Logo-Amarelo-Star-Wars-PNG.png"
+            alt="logo-star-wars"
+          />
+        </div>
+      </Link>
+
       <ul className="header__menu">
         <Link to="/">
           <li className="header__item">Главная</li>

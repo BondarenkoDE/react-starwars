@@ -1,11 +1,13 @@
 .header {
-  height: 160px;
   padding: 10px 0;
   display: flex;
   align-items: center;
+
   &__logo {
-    height: 100%;
     cursor: pointer;
+    img {
+      height: 120px;
+    }
   }
   &__menu {
     display: flex;
@@ -24,10 +26,17 @@
     text-transform: uppercase;
     transition: all 0.2s;
     cursor: pointer;
+
     &:first-child {
       margin-right: 27px;
     }
+
     &:hover {
+      color: #ffffff;
+      border-color: #1e91ea;
+    }
+
+    .active {
       color: #ffffff;
       border-color: #1e91ea;
     }
@@ -37,9 +46,4 @@
 .separator {
   height: 1px;
   background-color: #e3af3a;
-}
-
-.active {
-  color: #ffffff;
-  border-color: #1e91ea;
 }

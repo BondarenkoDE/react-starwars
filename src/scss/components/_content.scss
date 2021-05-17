@@ -30,3 +30,37 @@
     }
   }
 }
+
+.pagination {
+  margin: 0 auto;
+  margin-top: 10px;
+
+  &__items {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    background-color: transparent;
+    border-radius: 50%;
+    color: #ffffff4d;
+    border: 2px solid #ffffff4d;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+
+    &:hover {
+      color: #ffffff;
+      border: 2px solid #1e91ea;
+    }
+
+    &.active {
+      color: #ffffff;
+      border-color: #1e91ea;
+    }
+  }
+}

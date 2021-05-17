@@ -42,9 +42,8 @@
         border-radius: 5px;
       }
     }
+    &.active {
+      display: none;
+    }
   }
-}
-
-.active {
-  display: none;
 }
