@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 
-const Pagination = React.memo(function Pagination({ pages, onClickChangePage }) {
+const Pagination = React.memo(function Pagination({ itemPerPage, items, paginate }) {
   const [activePage, setActivePage] = useState(1);
 
-  const onClickPage = (item) => {
-    setActivePage(item);
-    onClickChangePage(item);
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(items.length / itemPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  const changePage = (number) => {
+    setActivePage(number);
+    paginate(number);
   };
 
   return (
     <>
       <ul className="pagination__items">
-        {pages.map((item, index) => (
+        {pageNumbers.map((number) => (
           <li
-            key={index}
-            className={classNames('pagination__item', { active: activePage === item })}
-            onClick={() => onClickPage(item)}>
-            {item}
+            key={number}
+            className={classNames('pagination__item', { active: activePage === number })}
+            onClick={() => changePage(number)}>
+            {number}
           </li>
         ))}
       </ul>

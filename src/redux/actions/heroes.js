@@ -1,24 +1,40 @@
 import axios from 'axios';
 
-export const fetchHeroes = (page) => async (dispatch) => {
-  const { data } = await axios.get(`https://swapi.dev/api/people/?page=${page}`);
+export const fetchHeroes = () => async (dispatch) => {
+  const { data } = await axios.get(`https://swapi.dev/api/people/`);
 
-  const pagesCount = Math.ceil(data.count / 10);
-  const pagesNumbers = [];
-  for (let i = 0; i < pagesCount; i++) {
-    pagesNumbers[i] = i + 1;
+  //подсчет количества страниц
+  let count = Math.ceil(data.count / 10);
+  const pages = [];
+  for (let i = 0; i < count; i++) {
+    pages[i] = i + 1;
   }
-  dispatch(setAllPages(pagesNumbers));
 
-  const planets = await data.results.map((item, index) => {
+  //получение всех героев со всех страниц
+  const promiseHeroes = await pages.map((item, index) => {
+    return axios.get(`https://swapi.dev/api/people/?page=${item}`);
+  });
+
+  const datas = await Promise.all(promiseHeroes);
+
+  const heroes = datas
+    .map((item) => {
+      return item.data.results;
+    })
+    .flat();
+
+  const promiseHomeworlds = await heroes.map((item, index) => {
     return axios.get(`${item.homeworld}`);
   });
 
-  const homeworlds = await Promise.all(planets);
+  const homeworlds = await Promise.all(promiseHomeworlds);
 
-  const items = await data.results.map((item, index) => {
+  // сюда фильтр для поиска и категории
+
+  //
+
+  const items = heroes.map((item, index) => {
     const idHero = item.url.match(/\d+/g);
-
     return {
       id: idHero[0],
       name: item.name,
@@ -26,8 +42,6 @@ export const fetchHeroes = (page) => async (dispatch) => {
       gender: item.gender,
     };
   });
-
-  console.log(items);
 
   dispatch(setHeroes(items));
 };
@@ -37,7 +51,7 @@ export const setHeroes = (items) => ({
   payload: items,
 });
 
-export const setAllPages = (pagesNumbers) => ({
+export const setAllPages = (pagesCount) => ({
   type: 'SET_PAGES',
-  payload: pagesNumbers,
+  payload: pagesCount,
 });

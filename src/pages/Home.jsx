@@ -1,22 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Search, SortPopup, Heroes, Pagination } from '../components';
 
 import { fetchHeroes } from '../redux/actions/heroes';
-import { setPage } from '../redux/actions/pagination';
-// import { setSortBy } from '../redux/actions/sort';
 
 const Home = React.memo(function Home() {
   const dispatch = useDispatch();
-  const { items, pagesNumbers } = useSelector(({ heroes }) => heroes);
-  const page = useSelector(({ pagination }) => pagination.page);
+  const { items } = useSelector(({ heroes }) => heroes);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemPerPage, setItemPerPage] = useState(10);
+
+  const indexOfLastItem = currentPage * itemPerPage;
+  const indexOfLFirstItem = indexOfLastItem - itemPerPage;
+  const currentItems = items.slice(indexOfLFirstItem, indexOfLastItem);
 
   useEffect(() => {
-    dispatch(fetchHeroes(page));
-  }, [page]);
+    dispatch(fetchHeroes());
+  }, [currentPage]);
 
-  const onChangePage = (page) => {
-    dispatch(setPage(page));
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   return (
@@ -26,12 +29,12 @@ const Home = React.memo(function Home() {
         <SortPopup />
       </div>
       <div className="content">
-        {items.map((obj) => (
-          <Heroes key={obj.id} {...obj} />
+        {currentItems.map((item) => (
+          <Heroes key={item.id} {...item} />
         ))}
       </div>
       <div className="pagination">
-        <Pagination pages={pagesNumbers} onClickChangePage={onChangePage} />
+        <Pagination itemPerPage={itemPerPage} items={items} paginate={paginate} />
       </div>
     </>
   );

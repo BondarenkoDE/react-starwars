@@ -1,7 +1,7 @@
 const initialState = {
   items: [],
   page: 1,
-  pagesNumbers: [],
+  pagesCount: [],
 };
 
 const heroes = (state = initialState, action) => {
@@ -11,7 +11,7 @@ const heroes = (state = initialState, action) => {
     case 'SET_PAGE':
       return { ...state, page: action.payload };
     case 'SET_PAGES':
-      return { ...state, pagesNumbers: action.payload };
+      return { ...state, pagesCount: action.payload };
 
     default:
       return state;
