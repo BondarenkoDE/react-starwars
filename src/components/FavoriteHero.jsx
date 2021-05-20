@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Heroes({ id, name, homeworld }) {
+function FavoriteHero({ id, name, homeworld }) {
   return (
     <div
       className="card"
@@ -13,4 +13,4 @@ function Heroes({ id, name, homeworld }) {
   );
 }
 
-export default Heroes;
+export default FavoriteHero;

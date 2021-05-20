@@ -1,9 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Heroes } from '../components';
+import { useSelector } from 'react-redux';
+import { FavoriteHero } from '../components';
 
 function Favorites() {
-  return <div></div>;
+  const items = useSelector(({ favorites }) => favorites.items);
+
+  const addedHeroes = Object.keys(items).map((key) => {
+    return items[key].items[0]; //из первых объектов вытащили первые объекты и заменили их на 0
+  });
+
+  return (
+    <div className="content">
+      {addedHeroes.map((item) => (
+        <FavoriteHero key={item.id} {...item} />
+      ))}
+    </div>
+  );
 }
 
 export default Favorites;

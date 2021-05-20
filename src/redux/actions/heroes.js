@@ -2,6 +2,8 @@ import axios from 'axios';
 
 export const fetchHeroes = () => async (dispatch) => {
   const { data } = await axios.get(`https://swapi.dev/api/people/`);
+  const search = '';
+  const gender = 'male';
 
   //подсчет количества страниц
   let count = Math.ceil(data.count / 10);
@@ -29,17 +31,31 @@ export const fetchHeroes = () => async (dispatch) => {
 
   const homeworlds = await Promise.all(promiseHomeworlds);
 
-  // сюда фильтр для поиска и категории
+  // фильтр для поиска и категорий
+  const filteredHeroes = heroes.filter((hero) => {
+    if (search == false && gender == false) {
+      return hero;
+    }
 
-  //
+    if (hero.name === search && hero.gender === gender) {
+      return hero;
+    }
 
-  const items = heroes.map((item, index) => {
-    const idHero = item.url.match(/\d+/g);
+    if (hero.name === search && gender == false) {
+      return hero;
+    }
+
+    if (hero.gender === gender && search == false) {
+      return hero;
+    }
+  });
+
+  const items = filteredHeroes.map((hero, index) => {
+    const idHero = hero.url.match(/\d+/g);
     return {
       id: idHero[0],
-      name: item.name,
+      name: hero.name,
       homeworld: homeworlds[index].data.name,
-      gender: item.gender,
     };
   });
 
