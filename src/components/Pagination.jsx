@@ -3,7 +3,6 @@ import classNames from 'classnames';
 
 const Pagination = React.memo(function Pagination({ itemPerPage, items, paginate }) {
   const [activePage, setActivePage] = useState(1);
-
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(items.length / itemPerPage); i++) {

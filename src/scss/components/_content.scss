@@ -1,32 +1,62 @@
 .content {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 0 37px;
   margin-top: 46px;
 
   .card {
     width: 185px;
     height: 248px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 3px;
     margin-bottom: 35px;
     color: #ffffff;
     padding: 8px 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    border: 2px solid transparent;
-    transition: all 0.2s;
+
+    &.loader {
+      padding: 0;
+    }
 
     &:hover {
-      border: 2px solid #1e91ea;
+      outline: #1e91ea solid 2px;
     }
 
-    &__name {
-      font-size: 16px;
-      font-weight: 800;
+    &__hearth {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        width: 35px;
+        height: 35px;
+        background-color: transparent;
+        border: none;
+        transition: all 0.3s;
+
+        svg {
+          path {
+            fill: rgba(194, 194, 194, 0.726);
+            &:hover {
+              fill: rgba(173, 173, 173, 0.726);
+            }
+            &:active {
+              fill: red;
+            }
+          }
+        }
+      }
     }
 
-    &__homeworld {
-      font-size: 15px;
+    .descr {
+      &__name {
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      &__homeworld {
+        font-size: 15px;
+      }
     }
   }
 }

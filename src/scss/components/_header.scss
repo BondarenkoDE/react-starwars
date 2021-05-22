@@ -9,10 +9,12 @@
       height: 120px;
     }
   }
+
   &__menu {
     display: flex;
     margin-left: 88px;
   }
+
   &__item {
     display: flex;
     justify-content: center;
@@ -36,7 +38,7 @@
       border-color: #1e91ea;
     }
 
-    .active {
+    &.active {
       color: #ffffff;
       border-color: #1e91ea;
     }

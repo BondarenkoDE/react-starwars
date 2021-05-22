@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 
 function Header() {
+  const [activePage, setActivePage] = useState(1);
+
   return (
     <div className="header">
       <Link to="/">
@@ -15,10 +18,18 @@ function Header() {
 
       <ul className="header__menu">
         <Link to="/">
-          <li className="header__item">Главная</li>
+          <li
+            className={classNames('header__item', { active: activePage === 1 })}
+            onClick={() => setActivePage(1)}>
+            Главная
+          </li>
         </Link>
         <Link to="/favorites">
-          <li className="header__item">Любимые герои</li>
+          <li
+            className={classNames('header__item', { active: activePage === 2 })}
+            onClick={() => setActivePage(2)}>
+            Любимые герои
+          </li>
         </Link>
       </ul>
     </div>

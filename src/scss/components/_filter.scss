@@ -4,12 +4,14 @@
   display: flex;
   justify-content: center;
 
-  &__search {
+  .search {
     display: flex;
     align-items: center;
     padding-left: 14px;
     width: 523px;
     height: 36px;
+    color: #ffffff;
+    font-size: 16px;
     background-color: #2020207c;
     border: 1px solid #1e91ea;
     border-radius: 5px;
@@ -25,9 +27,30 @@
     background-color: #2020207c;
     border: 1px solid #1e91ea;
     border-radius: 5px;
+    cursor: pointer;
+
+    &__label {
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 8px;
+        transform: rotate(180deg);
+
+        &.rotated {
+          transform: rotate(0deg);
+        }
+      }
+
+      b {
+        margin-right: 8px;
+      }
+    }
+
     b {
       margin-right: 5px;
     }
+
     &__popup {
       position: absolute;
       top: 36px;
@@ -40,8 +63,14 @@
         height: 36px;
         background: #202020;
         border-radius: 5px;
+
+        &.active {
+          font-weight: bold;
+          color: #1e91ea;
+        }
       }
     }
+
     &.active {
       display: none;
     }

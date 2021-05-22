@@ -7,8 +7,10 @@ function FavoriteHero({ id, name, homeworld }) {
       style={{
         background: `url('https://starwars-visualguide.com/assets/img/characters/${id}.jpg') center center / cover no-repeat`,
       }}>
-      <div className="card__name">{name}</div>
-      <div className="card__homeworld">{homeworld}</div>
+      <div className="descr" style={{ justifyContent: 'flex-end' }}>
+        <div className="descr__name">{name}</div>
+        <div className="descr__homeworld">{homeworld}</div>
+      </div>
     </div>
   );
 }
