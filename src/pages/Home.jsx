@@ -26,6 +26,7 @@ const Home = React.memo(function Home() {
 
   useEffect(() => {
     dispatch(fetchHeroes(searchName, sortBy));
+    paginate(1);
   }, [searchName, sortBy]);
 
   const paginate = (pageNumber) => {

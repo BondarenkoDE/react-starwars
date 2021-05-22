@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 
-const Pagination = React.memo(function Pagination({ itemPerPage, items, paginate }) {
+function Pagination({ itemPerPage, items, paginate }) {
   const [activePage, setActivePage] = useState(1);
   const pageNumbers = [];
 
@@ -28,6 +28,5 @@ const Pagination = React.memo(function Pagination({ itemPerPage, items, paginate
       </ul>
     </>
   );
-});
-
+}
 export default Pagination;
